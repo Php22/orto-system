@@ -8,7 +8,7 @@
         <span class="icon">
             <i class="fas fa-shopping-bag"></i>
         </span>
-        <h5>Produtos</h5>
+        <h5>Entrada</h5>
     </div>
     <div class="span12" style="margin-left: 0">
         <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aProduto')) : ?>
@@ -39,10 +39,13 @@
                 <thead>
                 <tr>
                     <th>Cod.</th>
-                    <th>Cod. Barra</th>
-                    <th>Nome</th>
-                    <th>Estoque</th>
-                    <th>Preço</th>
+                    <th>Cliente</th><!-- <th>Cod. Barra</th> -->
+                    <th>Trabalho</th><!-- <th>Nome</th> -->
+                    <th>Paciente</th><!-- <th>Estoque</th> -->
+                    <th>Protetico</th><!-- <th>Preço</th> -->
+                    <th>Comissão</th>
+                    <th>Valor</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
                 </thead>

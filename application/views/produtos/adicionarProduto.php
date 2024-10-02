@@ -32,26 +32,26 @@
                 <span class="icon">
                     <i class="fas fa-shopping-bag"></i>
                 </span>
-                <h5>Cadastro de Produto</h5>
+                <h5>Cadastro de Entrada</h5>
             </div>
             <div class="widget-content nopadding tab-content">
                 <?php echo $custom_error; ?>
                 <form action="<?php echo current_url(); ?>" id="formProduto" method="post" class="form-horizontal">
                     <div class="control-group">
-                        <label for="codDeBarra" class="control-label">Código de Barra<span class=""></span></label>
+                        <label for="codDeBarra" class="control-label">Cliente<span class=""></span></label>
                         <div class="controls">
                             <input id="codDeBarra" type="text" name="codDeBarra" value="<?php echo set_value('codDeBarra'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="descricao" class="control-label">Descrição<span class="required">*</span></label>
+                        <label for="descricao" class="control-label">Trabalho<span class="required">*</span></label>
                         <div class="controls">
                             <input id="descricao" type="text" name="descricao" value="<?php echo set_value('descricao'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Tipo de Movimento</label>
-                        <div class="controls">
+                        <!-- <label class="control-label">Tipo de Movimento</label> -->
+                        <!-- <div class="controls">
                             <label for="entrada" class="btn btn-default" style="margin-top: 5px;">Entrada
                                 <input type="checkbox" id="entrada" name="entrada" class="badgebox" value="1" checked>
                                 <span class="badge">&check;</span>
@@ -60,17 +60,17 @@
                                 <input type="checkbox" id="saida" name="saida" class="badgebox" value="1" checked>
                                 <span class="badge">&check;</span>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="control-group">
-                        <label for="precoCompra" class="control-label">Preço de Compra<span class="required">*</span></label>
+                        <label for="precoCompra" class="control-label">Paciente<span class="required">*</span></label>
                         <div class="controls">
                             <input id="precoCompra" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="precoCompra" value="<?php echo set_value('precoCompra'); ?>" />
                             <strong><span style="color: red" id="errorAlert"></span><strong>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="Lucro" class="control-label">Lucro</label>
+                        <!-- <label for="Lucro" class="control-label">Lucro</label>
                         <div class="controls">
                             <select id="selectLucro" name="selectLucro" style="width: 10.5em;">
                               <option value="markup">Markup</option>
@@ -78,31 +78,41 @@
                             </select>
                             <input style="width: 4em;" id="Lucro" name="Lucro" type="text" placeholder="%" maxlength="3" size="2" />
                             <i class="icon-info-sign tip-left" title="Markup: Porcentagem aplicada ao valor de compra | Margem de Lucro: Porcentagem aplicada ao valor de venda"></i>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="control-group">
-                        <label for="precoVenda" class="control-label">Preço de Venda<span class="required">*</span></label>
+                        <label for="precoVenda" class="control-label">Protetico<span class="required">*</span></label>
                         <div class="controls">
                             <input id="precoVenda" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="precoVenda" value="<?php echo set_value('precoVenda'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="unidade" class="control-label">Unidade<span class="required">*</span></label>
+                        <label for="unidade" class="control-label">Comissão<span class="required">*</span></label>
                         <div class="controls">
                             <select id="unidade" name="unidade"></select>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="estoque" class="control-label">Estoque<span class="required">*</span></label>
+                        <label for="estoque" class="control-label">Valor<span class="required">*</span></label>
                         <div class="controls">
                             <input id="estoque" type="text" name="estoque" value="<?php echo set_value('estoque'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="estoqueMinimo" class="control-label">Estoque Mínimo</label>
-                        <div class="controls">
+                        <label for="estoqueMinimo" class="control-label">Status </label>
+                        <!-- <div class="controls">
                             <input id="estoqueMinimo" type="text" name="estoqueMinimo" value="<?php echo set_value('estoqueMinimo'); ?>" />
-                        </div>
+                        </div> -->
+                        <div class="span2">
+                <select name="status" id="" class="span11">
+                    <option value="">Selecione status</option>
+                    <option value="Aberto">Agenda</option>
+                    <option value="Faturado">Sem Horario</option>
+                    <option value="Negociação">Produção</option>
+                    <option value="Em Andamento">Finalizado</option>
+                    
+                </select>
+            </div>
                     </div>
                     <div class="form-actions">
                         <div class="span12">

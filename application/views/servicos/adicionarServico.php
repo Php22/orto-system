@@ -5,13 +5,13 @@
                 <span class="icon">
                     <i class="fas fa-wrench"></i>
                 </span>
-                <h5>Cadastro de Serviço</h5>
+                <h5>Cadastro de Trabalhos</h5>
             </div>
             <div class="widget-content nopadding tab-content">
                 <?php echo $custom_error; ?>
                 <form action="<?php echo current_url(); ?>" id="formServico" method="post" class="form-horizontal">
                     <div class="control-group">
-                        <label for="nome" class="control-label">Nome<span class="required">*</span></label>
+                        <label for="nome" class="control-label">Descrição<span class="required">*</span></label>
                         <div class="controls">
                             <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>" />
                         </div>
@@ -22,11 +22,11 @@
                             <input id="preco" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="preco" value="<?php echo set_value('preco'); ?>" />
                         </div>
                     </div>
-                    <div class="control-group">
+                    <!-- <div class="control-group">
                         <label for="descricao" class="control-label">Descrição</label>
                         <div class="controls">
                             <input id="descricao" type="text" name="descricao" value="<?php echo set_value('descricao'); ?>" />
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-actions">
                         <div class="span12">

@@ -8,7 +8,7 @@
         <span class="icon">
             <i class="fas fa-wrench"></i>
         </span>
-        <h5>Serviços</h5>
+        <h5>Tabela Padrão</h5>
     </div>
     <div class="span12" style="margin-left: 0">
         <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) : ?>
@@ -37,7 +37,7 @@
                         <th>Cod.</th>
                         <th>Nome</th>
                         <th>Preço</th>
-                        <th>Descrição</th>
+                        <!-- <th>Descrição</th> -->
                         <th>Ações</th>
                     </tr>
                 </thead>
