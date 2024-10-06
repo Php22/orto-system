@@ -333,6 +333,15 @@ class Vendas extends MY_Controller
         redirect(site_url('vendas/gerenciar/'));
     }
 
+    public function autoCompleteServico()
+    {
+        if (isset($_GET['term'])) {
+            $q = strtolower($_GET['term']);
+            $this->vendas_model->autoCompleteServico($q);
+        }
+    }
+
+
     public function autoCompleteProduto()
     {
         if (isset($_GET['term'])) {

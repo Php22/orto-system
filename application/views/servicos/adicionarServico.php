@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
+<script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+
 <div class="row-fluid" style="margin-top:0">
     <div class="span12">
         <div class="widget-box">
@@ -48,6 +51,11 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(".money").maskMoney();
+        $("#nome").autocomplete({
+            source: "<?php echo base_url(); ?>index.php/servicos/autoCompleteCliente",
+            minLength: 1,
+        });
+
         $('#formServico').validate({
             rules: {
                 nome: {

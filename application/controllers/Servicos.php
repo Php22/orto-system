@@ -139,4 +139,12 @@ class Servicos extends MY_Controller
         $this->session->set_flashdata('success', 'Serviço excluido com sucesso!');
         redirect(site_url('servicos/gerenciar/'));
     }
+
+    public function autoCompleteCliente()
+    {
+        if (isset($_GET['term'])) {
+            $q = strtolower($_GET['term']);
+            $this->servicos_model->autoCompleteCliente($q);
+        }
+    }
 }

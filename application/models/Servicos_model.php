@@ -70,4 +70,19 @@ class Servicos_model extends CI_Model
     {
         return $this->db->count_all($table);
     }
+
+    public function autoCompleteCliente($q)
+    {
+        $this->db->select('*');
+        $this->db->limit(25);
+        $this->db->like('nomeCliente', $q);
+        $query = $this->db->get('clientes');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $row) {
+                $row_set[] = ['label' => $row['nomeCliente'] . '', 'id' => $row['idClientes']];
+            }
+            echo json_encode($row_set);
+        }
+    }
+
 }
