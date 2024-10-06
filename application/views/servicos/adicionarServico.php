@@ -14,17 +14,45 @@
                 <?php echo $custom_error; ?>
                 <form action="<?php echo current_url(); ?>" id="formServico" method="post" class="form-horizontal">
                     <div class="control-group">
-                        <label for="nome" class="control-label">Descrição<span class="required">*</span></label>
+                        <label for="nome" class="control-label">Cliente<span class="required">*</span></label>
                         <div class="controls">
                             <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>" />
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="preco" class="control-label"><span class="required">Preço*</span></label>
+                        <div class="control-group">
+                        <label for="paciente" class="control-label">Paciente<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="preco" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="preco" value="<?php echo set_value('preco'); ?>" />
+                            <input id="paciente" type="text" name="paciente" value="<?php echo set_value('paciente'); ?>" />
+                        </div>
+                        <div class="control-group">
+                        <label for="trabalho" class="control-label">Trabalho<span class="required">*</span></label>
+                        <div class="controls">
+                            <input id="trabalho" type="text" name="trabalho" value="<?php echo set_value('trabalho'); ?>" />
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label for="preco" class="control-label"><span class="required">Valor*</span></label>
+                        <div class="controls">
+                            <input id="preco" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="preco" value="<?php echo set_value('preco'); ?>" />
+                       
+                     </div>
+                     </div>
+                        <div class="control-group">
+                        <label for="agenda" class="control-label">Data Agenda<span class="required">*</span></label>
+                        <div class="controls">
+                            <input id="agenda" type="text" name="agenda" value="<?php echo set_value('agenda'); ?>" />
+                        </div>
+                    </div>
+                    <div class="span2">
+                                            <label for="status">Status<span class="required">*</span></label>
+                                            <select class="span10" name="status" id="status" value="">
+                                                <option value="Agenda">Agenda</option>
+                                                <option value="Sem data">Sem data</option>
+                                                <option value="Producao">Produção</option>
+                                                
+                                                <option value="Finalizado">Finalizado</option>
+                                                
+                                            </select>
+                                        </div>
                     <!-- <div class="control-group">
                         <label for="descricao" class="control-label">Descrição</label>
                         <div class="controls">
