@@ -43,11 +43,12 @@
                        
                      </div>
                      </div>
-                        <div class="control-group">
+                     <div class="control-group">
                         <label for="agenda" class="control-label">Data Agenda<span class="required">*</span></label>
-                        <div class="controls">
-                            <input id="agenda" type="text" name="agenda" value="<?php echo set_value('agenda'); ?>" />
+                        <div class="controls" style="width: 222px;margin-bottom: 12px">
+                            <input style="margin-bottom: 18px" id="dataInicial" autocomplete="off" class="span12 datepicker" type="text" name="data" value="<?php echo date('d/m/Y'); ?>" />
                         </div>
+                    </div>
                     </div>
                     <div class="control-group">
                         <label for="status" class="control-label">Status<span class="required">*</span></label>
@@ -108,9 +109,6 @@
                 $(element).parents('.control-group').addClass('success');
             }
         });
-    });
-
-        $(document).ready(function() {
         $.ajax({
             url: '<?php echo base_url(); ?>index.php/servicos/getClientes',
             type: 'GET',
@@ -121,5 +119,9 @@
                 });
             }
         });
+        $(".datepicker").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
     });
+
 </script>

@@ -55,9 +55,12 @@
                             echo '<tr>';
                             echo '<td>' . $r->idServicos . '</td>';
                             echo '<td>' . $r->nome . '</td>';
-                            echo '<td>' . number_format($r->preco, 2, ',', '.') . '</td>';
                             echo '<td>' . $r->paciente . '</td>';
-                            echo '<td>';
+                            echo '<td>' ;
+                            echo '<td>' . number_format($r->preco, 2, ',', '.') . '</td>';
+                            echo '<td>' . $r->data . '</td>';
+                            echo '<td>' ;
+                            echo '<td>' ;
                             if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
                                 echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/servicos/editar/' . $r->idServicos . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
                             }

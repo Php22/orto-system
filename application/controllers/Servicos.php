@@ -49,52 +49,53 @@ class Servicos extends MY_Controller
 
     public function adicionar()
     {
-    if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
-        $this->session->set_flashdata('error', 'Você não tem permissão para adicionar serviços.');
-        redirect(base_url());
-    }
-
-    $this->load->library('form_validation');
-    $this->data['custom_error'] = '';
-
-    // Remover a validação para o campo 'nome'
-    // Se você tinha algo assim, remova
-    // $this->form_validation->set_rules('nome', 'Nome', 'required'); // REMOVER
-
-    // Adicionar validação para o campo 'paciente' se necessário
-    $this->form_validation->set_rules('preco', 'Valor', 'required'); // O preço continua obrigatório
-
-    if ($this->form_validation->run() == false) {
-        $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
-    } else {
-        $preco = $this->input->post('preco');
-        $preco = str_replace(',', '', $preco);
-
-        $data = [
-            'nome' => $this->input->post('cliente_nome'), // Salvar o nome do cliente
-            'paciente' => $this->input->post('paciente'), // Salvar o nome do paciente
-            'descricao' => set_value('descricao'),
-            'preco' => $preco,
-        ];
-
-        if ($this->servicos_model->add('servicos', $data) == true) {
-            $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
-            log_info('Adicionou um serviço');
-            redirect(site_url('servicos/adicionar/'));
-        } else {
-            $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
+        if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
+            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar serviços.');
+            redirect(base_url());
         }
+
+        $this->load->library('form_validation');
+        $this->data['custom_error'] = '';
+
+        $this->form_validation->set_rules('Cliente', 'preco', 'Valor', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+        } else {
+            $preco = $this->input->post('preco');
+            $preco = str_replace(',', '', $preco);
+
+            $dataInput = $this->input->post('data');
+
+            $dataFormatada = DateTime::createFromFormat('d/m/Y', $dataInput);
+
+            if (!$dataFormatada) {
+                $this->data['custom_error'] = '<div class="form_error"><p>Data inválida. Use o formato dd/mm/aaaa.</p></div>';
+            } else {
+                $data = [
+                    'nome' => $this->input->post('cliente_nome'),
+                    'paciente' => $this->input->post('paciente'),
+                    'descricao' => $this->input->post('descricao'),
+                    'preco' => $preco,
+                    'data' => $dataFormatada->format('Y-m-d')
+                ];
+
+                if ($this->servicos_model->add('servicos', $data) == true) {
+                    $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
+                    log_info('Adicionou um serviço');
+                    redirect(site_url('servicos/adicionar/'));
+                } else {
+                    $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro ao adicionar o serviço.</p></div>';
+                }
+            }
+        }
+
+        $this->data['clientes'] = $this->servicos_model->getClientes();
+
+        $this->data['view'] = 'servicos/adicionarServico';
+
+        return $this->layout();
     }
-
-    // Carregar a lista de clientes
-    $this->data['clientes'] = $this->servicos_model->getClientes();
-
-    // Definir a view
-    $this->data['view'] = 'servicos/adicionarServico';
-
-    return $this->layout();
-    }
-
 
     public function editar()
     {
