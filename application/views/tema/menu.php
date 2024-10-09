@@ -67,7 +67,7 @@
                         echo 'active';
                     }; ?>">
                         <a class="tip-bottom" title="" href="<?= site_url('servicos') ?>"><i class='bx bx-wrench iconX'></i>
-                            <span class="title">Serviços</span>
+                            <span class="title">Agenda</span>
                             <span class="title-tooltip">Serviços</span>
                         </a>
                     </li>

@@ -35,9 +35,12 @@
                 <thead>
                     <tr>
                         <th>Cod.</th>
-                        <th>Nome</th>
-                        <th>Preço</th>
-                        <!-- <th>Descrição</th> -->
+                        <th>Cliente</th>
+                        <th>Paciente</th>
+                        <th>Trabalho</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
