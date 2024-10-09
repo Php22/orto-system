@@ -42,17 +42,16 @@
                             <input id="agenda" type="text" name="agenda" value="<?php echo set_value('agenda'); ?>" />
                         </div>
                     </div>
-                    <div class="span2">
-                                            <label for="status">Status<span class="required">*</span></label>
-                                            <select class="span10" name="status" id="status" value="">
-                                                <option value="Agenda">Agenda</option>
-                                                <option value="Sem data">Sem data</option>
-                                                <option value="Producao">Produção</option>
-                                                
-                                                <option value="Finalizado">Finalizado</option>
-                                                
-                                            </select>
-                                        </div>
+                    <div class="control-group">
+                        <label for="status" class="control-label">Status<span class="required">*</span></label>
+                        <select class="span10" name="status" id="status" value="" style="margin-left: 18px;width: 222px;">
+                            <option value="Agenda">Agenda</option>
+                            <option value="Sem data">Sem data</option>
+                            <option value="Producao">Produção</option>
+                            <option value="Finalizado">Finalizado</option>
+                            
+                        </select>
+                    </div>
                     <!-- <div class="control-group">
                         <label for="descricao" class="control-label">Descrição</label>
                         <div class="controls">
