@@ -14,10 +14,15 @@
                 <?php echo $custom_error; ?>
                 <form action="<?php echo current_url(); ?>" id="formServico" method="post" class="form-horizontal">
                     <div class="control-group">
+                    <div class="control-group">
                         <label for="nome" class="control-label">Cliente<span class="required">*</span></label>
-                        <div class="controls">
+                        <select class="span10" name="cliente" id="cliente" style="margin-left: 18px;width: 222px;">
+                            <option value="Selecione o Cliente">Selecione o Cliente</option>
+                        </select>
+                    </div>
+                        <!-- <div class="controls">
                             <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>" />
-                        </div>
+                        </div> -->
                         <div class="control-group">
                         <label for="paciente" class="control-label">Paciente<span class="required">*</span></label>
                         <div class="controls">
@@ -78,10 +83,10 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(".money").maskMoney();
-        $("#nome").autocomplete({
+        /* $("#nome").autocomplete({
             source: "<?php echo base_url(); ?>index.php/servicos/autoCompleteCliente",
             minLength: 1,
-        });
+        }); */
 
         $('#formServico').validate({
             rules: {
@@ -108,6 +113,21 @@
             unhighlight: function(element, errorClass, validClass) {
                 $(element).parents('.control-group').removeClass('error');
                 $(element).parents('.control-group').addClass('success');
+            }
+        });
+    });
+
+        $(document).ready(function() {
+        // Fazendo requisição para buscar os clientes
+        $.ajax({
+            url: '<?php echo base_url(); ?>index.php/servicos/getClientes',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Populando o select com os dados retornados
+                $.each(data, function(key, value) {
+                    $('#cliente').append('<option value="' + value.idClientes + '">' + value.nomeCliente + '</option>');
+                });
             }
         });
     });

@@ -147,5 +147,21 @@ class Servicos extends MY_Controller
             $this->servicos_model->autoCompleteCliente($q);
         }
     }
+
+    public function getClientes()
+{
+    // Chama o método do modelo para buscar os clientes
+    $clientes = $this->servicos_model->getClientes();
+
+    // Verifica se a consulta foi bem-sucedida
+    if ($clientes === false) {
+        // Caso a consulta tenha falhado, retorne um erro apropriado
+        echo json_encode(['error' => 'Erro ao buscar clientes']);
+        return;
+    }
+
+    // Retorna os dados dos clientes em formato JSON
+    echo json_encode($clientes);
+}
     
 }

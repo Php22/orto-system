@@ -85,4 +85,21 @@ class Servicos_model extends CI_Model
         }
     }
 
+    public function getClientes()
+{
+    // Realiza a consulta no banco de dados
+    $this->db->select('idClientes, nomeCliente');
+    $this->db->from('clientes');
+    $query = $this->db->get();
+
+    // Verifica se a consulta foi bem-sucedida
+    if ($query === false) {
+        // Se a consulta falhar, retorna um erro
+        return false;
+    }
+
+    // Retorna os resultados da consulta
+    return $query->result_array(); // Retorna os dados como um array associativo
+}
+
 }
