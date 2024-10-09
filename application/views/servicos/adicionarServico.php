@@ -22,16 +22,14 @@
                             <option value="<?php echo $cliente['nomeCliente']; ?>"><?php echo $cliente['nomeCliente']; ?></option>
                         <?php endforeach; ?>
                     </select>
-
                     </div>
-                        <!-- <div class="controls">
-                            <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>" />
-                        </div> -->
                         <div class="control-group">
+                    <div class="control-group">
                         <label for="paciente" class="control-label">Paciente<span class="required">*</span></label>
                         <div class="controls">
                             <input id="paciente" type="text" name="paciente" value="<?php echo set_value('paciente'); ?>" />
                         </div>
+                    </div>
                         <div class="control-group">
                         <label for="trabalho" class="control-label">Trabalho<span class="required">*</span></label>
                         <div class="controls">
@@ -61,11 +59,6 @@
                             
                         </select>
                     </div>
-                    <!-- <div class="control-group">
-                        <label for="descricao" class="control-label">Descrição</label>
-                        <div class="controls">
-                            <input id="descricao" type="text" name="descricao" value="<?php echo set_value('descricao'); ?>" />
-                        </div> -->
                     </div>
                     <div class="form-actions">
                         <div class="span12">
@@ -87,10 +80,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(".money").maskMoney();
-        /* $("#nome").autocomplete({
-            source: "<?php echo base_url(); ?>index.php/servicos/autoCompleteCliente",
-            minLength: 1,
-        }); */
 
         $('#formServico').validate({
             rules: {
@@ -122,13 +111,11 @@
     });
 
         $(document).ready(function() {
-        // Fazendo requisição para buscar os clientes
         $.ajax({
             url: '<?php echo base_url(); ?>index.php/servicos/getClientes',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                // Populando o select com os dados retornados
                 $.each(data, function(key, value) {
                     $('#cliente').append('<option value="' + value.idClientes + '">' + value.nomeCliente + '</option>');
                 });

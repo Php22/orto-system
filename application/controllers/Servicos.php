@@ -61,7 +61,7 @@ class Servicos extends MY_Controller
     // Se você tinha algo assim, remova
     // $this->form_validation->set_rules('nome', 'Nome', 'required'); // REMOVER
 
-    // Se você tem regras de validação, adicione apenas as que você deseja
+    // Adicionar validação para o campo 'paciente' se necessário
     $this->form_validation->set_rules('preco', 'Valor', 'required'); // O preço continua obrigatório
 
     if ($this->form_validation->run() == false) {
@@ -72,6 +72,7 @@ class Servicos extends MY_Controller
 
         $data = [
             'nome' => $this->input->post('cliente_nome'), // Salvar o nome do cliente
+            'paciente' => $this->input->post('paciente'), // Salvar o nome do paciente
             'descricao' => set_value('descricao'),
             'preco' => $preco,
         ];
@@ -93,6 +94,7 @@ class Servicos extends MY_Controller
 
     return $this->layout();
     }
+
 
     public function editar()
     {
