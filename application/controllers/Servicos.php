@@ -49,37 +49,49 @@ class Servicos extends MY_Controller
 
     public function adicionar()
     {
-        if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar serviços.');
-            redirect(base_url());
-        }
+    if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
+        $this->session->set_flashdata('error', 'Você não tem permissão para adicionar serviços.');
+        redirect(base_url());
+    }
 
-        $this->load->library('form_validation');
-        $this->data['custom_error'] = '';
+    $this->load->library('form_validation');
+    $this->data['custom_error'] = '';
 
-        if ($this->form_validation->run('servicos') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+    // Remover a validação para o campo 'nome'
+    // Se você tinha algo assim, remova
+    // $this->form_validation->set_rules('nome', 'Nome', 'required'); // REMOVER
+
+    // Se você tem regras de validação, adicione apenas as que você deseja
+    $this->form_validation->set_rules('preco', 'Valor', 'required'); // O preço continua obrigatório
+
+    if ($this->form_validation->run() == false) {
+        $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+    } else {
+        $preco = $this->input->post('preco');
+        $preco = str_replace(',', '', $preco);
+
+        $data = [
+            'nome' => $this->input->post('cliente_nome'), // Salvar o nome do cliente
+            'descricao' => set_value('descricao'),
+            'preco' => $preco,
+        ];
+
+        if ($this->servicos_model->add('servicos', $data) == true) {
+            $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
+            log_info('Adicionou um serviço');
+            redirect(site_url('servicos/adicionar/'));
         } else {
-            $preco = $this->input->post('preco');
-            $preco = str_replace(',', '', $preco);
-
-            $data = [
-                'nome' => set_value('nome'),
-                'descricao' => set_value('descricao'),
-                'preco' => $preco,
-            ];
-
-            if ($this->servicos_model->add('servicos', $data) == true) {
-                $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
-                log_info('Adicionou um serviço');
-                redirect(site_url('servicos/adicionar/'));
-            } else {
-                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
-            }
+            $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
         }
-        $this->data['view'] = 'servicos/adicionarServico';
+    }
 
-        return $this->layout();
+    // Carregar a lista de clientes
+    $this->data['clientes'] = $this->servicos_model->getClientes();
+
+    // Definir a view
+    $this->data['view'] = 'servicos/adicionarServico';
+
+    return $this->layout();
     }
 
     public function editar()
@@ -150,17 +162,13 @@ class Servicos extends MY_Controller
 
     public function getClientes()
 {
-    // Chama o método do modelo para buscar os clientes
     $clientes = $this->servicos_model->getClientes();
 
-    // Verifica se a consulta foi bem-sucedida
     if ($clientes === false) {
-        // Caso a consulta tenha falhado, retorne um erro apropriado
         echo json_encode(['error' => 'Erro ao buscar clientes']);
         return;
     }
 
-    // Retorna os dados dos clientes em formato JSON
     echo json_encode($clientes);
 }
     

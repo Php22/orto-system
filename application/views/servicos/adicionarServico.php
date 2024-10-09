@@ -16,9 +16,13 @@
                     <div class="control-group">
                     <div class="control-group">
                         <label for="nome" class="control-label">Cliente<span class="required">*</span></label>
-                        <select class="span10" name="cliente" id="cliente" style="margin-left: 18px;width: 222px;">
-                            <option value="Selecione o Cliente">Selecione o Cliente</option>
-                        </select>
+                        <select class="span10" name="cliente_nome" id="cliente_nome" style="margin-left: 18px;width: 222px;">
+                        <option value="Selecione o Cliente">Selecione o Cliente</option>
+                        <?php foreach ($clientes as $cliente): ?>
+                            <option value="<?php echo $cliente['nomeCliente']; ?>"><?php echo $cliente['nomeCliente']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
                     </div>
                         <!-- <div class="controls">
                             <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>" />
@@ -91,7 +95,7 @@
         $('#formServico').validate({
             rules: {
                 nome: {
-                    required: true
+                    required: false
                 },
                 preco: {
                     required: true
